@@ -40,25 +40,25 @@ export function WhyAfzet() {
           ))}
 
           <div className="mx-auto max-w-2xl text-center">
-
-
-          <Reveal>
-            <Eyebrow className="text-background/60">Why Afzet</Eyebrow>
-            <h2 className="mt-5 font-[family-name:var(--font-display)] text-background [font-size:clamp(2rem,4.4vw,3.3rem)]">
-              Partners in growth. Built for healthcare.
-            </h2>
-            <p className="mx-auto mt-6 max-w-lg text-[1rem] leading-relaxed text-background/70">
-              Healthcare businesses don't need another disconnected marketing vendor. They need a
-              digital partner who understands the patient journey, the business behind the practice,
-              and the systems connecting the two.
-            </p>
-            <div className="mt-9 flex justify-center">
-              <Button href="#contact" variant="light">
-                Book a Strategy Call
-              </Button>
-            </div>
-          </Reveal>
+            <Reveal>
+              <Eyebrow className="text-background/60">Why Afzet</Eyebrow>
+              <h2 className="mt-5 font-[family-name:var(--font-display)] text-background [font-size:clamp(2rem,4.4vw,3.3rem)]">
+                Partners in growth. Built for healthcare.
+              </h2>
+              <p className="mx-auto mt-6 max-w-lg text-[1rem] leading-relaxed text-background/70">
+                Healthcare businesses don't need another disconnected marketing vendor. They need a
+                digital partner who understands the patient journey, the business behind the
+                practice, and the systems connecting the two.
+              </p>
+              <div className="mt-9 flex justify-center">
+                <Button href="#contact" variant="light">
+                  Book a Strategy Call
+                </Button>
+              </div>
+            </Reveal>
+          </div>
         </div>
+
 
         <ul className="mt-16 grid grid-cols-2 gap-6 lg:hidden">
           {tiles.map((t) => (
