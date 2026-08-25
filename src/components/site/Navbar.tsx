@@ -81,7 +81,7 @@ export function Navbar() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-full border border-current/20 md:hidden"
+              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-full border border-current opacity-70 md:hidden"
             >
               <span
                 className={cn(
