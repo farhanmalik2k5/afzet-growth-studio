@@ -5,17 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Afzet Studio design system.
+ * Colors are oklch semantic tokens. Never hardcode colors in components.
  */
 
 @theme inline {
@@ -45,91 +36,71 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
+  --color-mint: var(--mint);
+  --color-lime: var(--lime);
+  --color-cyan: var(--cyan);
+  --color-lavender: var(--lavender);
+  --color-coral: var(--coral);
+  --color-peach: var(--peach);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Sans", "Inter", ui-sans-serif, sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.75rem;
+
+  --ink: oklch(0.19 0.014 155);
+  --ink-soft: oklch(0.33 0.012 155);
+  --cream: oklch(0.975 0.008 95);
+  --mint: oklch(0.94 0.045 165);
+  --lime: oklch(0.88 0.14 128);
+  --cyan: oklch(0.93 0.05 205);
+  --lavender: oklch(0.91 0.05 295);
+  --coral: oklch(0.9 0.055 25);
+  --peach: oklch(0.93 0.055 60);
+
+  --background: oklch(0.985 0.004 100);
+  --foreground: var(--ink);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: oklch(0.985 0.004 100);
+  --secondary: oklch(0.96 0.006 120);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.96 0.006 120);
+  --muted-foreground: oklch(0.52 0.012 150);
+  --accent: var(--lime);
+  --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0.008 130);
+  --input: oklch(0.9 0.008 130);
+  --ring: oklch(0.75 0.06 145);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
+  --background: var(--ink);
+  --foreground: oklch(0.97 0.004 120);
+  --card: oklch(0.24 0.014 155);
+  --card-foreground: oklch(0.97 0.004 120);
+  --popover: oklch(0.24 0.014 155);
+  --popover-foreground: oklch(0.97 0.004 120);
+  --primary: oklch(0.97 0.004 120);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.28 0.014 155);
+  --secondary-foreground: oklch(0.97 0.004 120);
+  --muted: oklch(0.28 0.014 155);
+  --muted-foreground: oklch(0.72 0.01 140);
+  --accent: var(--lime);
+  --accent-foreground: var(--ink);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --ring: oklch(0.6 0.05 145);
 }
 
 @layer base {
@@ -137,8 +108,140 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Atmospheric gradient environments.
+   Each surface = base linear gradient + oversized blurred radial
+   layers that bleed past the section edges so neighbouring sections
+   interpolate instead of banding.
+   ---------------------------------------------------------------- */
+
+@utility grad-surface {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--background);
+}
+
+@utility grad-layer {
+  position: absolute;
+  inset: -25% -10%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+@utility grad-green {
+  background:
+    radial-gradient(60% 55% at 12% 20%, color-mix(in oklab, var(--lime) 70%, transparent), transparent 70%),
+    radial-gradient(55% 60% at 85% 15%, color-mix(in oklab, var(--mint) 85%, transparent), transparent 72%),
+    radial-gradient(70% 60% at 70% 95%, color-mix(in oklab, var(--cream) 90%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in oklab, var(--mint) 30%, var(--background)), var(--background));
+}
+
+@utility grad-cyan {
+  background:
+    radial-gradient(55% 60% at 85% 18%, color-mix(in oklab, var(--cyan) 85%, transparent), transparent 72%),
+    radial-gradient(60% 55% at 8% 70%, color-mix(in oklab, var(--mint) 70%, transparent), transparent 72%),
+    radial-gradient(65% 55% at 55% 100%, color-mix(in oklab, var(--lavender) 45%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in oklab, var(--cyan) 25%, var(--background)), var(--background));
+}
+
+@utility grad-purple {
+  background:
+    radial-gradient(55% 60% at 15% 20%, color-mix(in oklab, var(--lavender) 85%, transparent), transparent 72%),
+    radial-gradient(60% 55% at 90% 60%, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 72%),
+    radial-gradient(60% 55% at 45% 100%, color-mix(in oklab, var(--coral) 40%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in oklab, var(--lavender) 30%, var(--background)), var(--background));
+}
+
+@utility grad-coral {
+  background:
+    radial-gradient(58% 60% at 82% 15%, color-mix(in oklab, var(--coral) 85%, transparent), transparent 72%),
+    radial-gradient(60% 55% at 5% 55%, color-mix(in oklab, var(--lavender) 55%, transparent), transparent 72%),
+    radial-gradient(65% 55% at 60% 100%, color-mix(in oklab, var(--peach) 65%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in oklab, var(--coral) 25%, var(--background)), var(--background));
+}
+
+@utility grad-peach {
+  background:
+    radial-gradient(55% 60% at 18% 18%, color-mix(in oklab, var(--peach) 90%, transparent), transparent 72%),
+    radial-gradient(60% 60% at 92% 70%, color-mix(in oklab, var(--coral) 45%, transparent), transparent 72%),
+    radial-gradient(70% 55% at 50% 100%, color-mix(in oklab, var(--cream) 95%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in oklab, var(--peach) 28%, var(--background)), var(--background));
+}
+
+@utility grad-cream {
+  background:
+    radial-gradient(60% 60% at 80% 20%, color-mix(in oklab, var(--cream) 100%, transparent), transparent 72%),
+    radial-gradient(55% 55% at 10% 60%, color-mix(in oklab, var(--peach) 55%, transparent), transparent 72%),
+    radial-gradient(65% 60% at 55% 100%, color-mix(in oklab, var(--mint) 45%, transparent), transparent 78%),
+    linear-gradient(180deg, color-mix(in oklab, var(--cream) 70%, var(--background)), var(--background));
+}
+
+@utility grad-dark {
+  background:
+    radial-gradient(55% 60% at 20% 10%, color-mix(in oklab, var(--lime) 30%, transparent), transparent 68%),
+    radial-gradient(60% 60% at 90% 85%, color-mix(in oklab, var(--mint) 22%, transparent), transparent 70%),
+    radial-gradient(80% 70% at 50% 50%, color-mix(in oklab, var(--ink) 92%, transparent), transparent 78%),
+    linear-gradient(180deg, var(--ink), color-mix(in oklab, var(--ink) 88%, var(--lime)));
+}
+
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  }
+}
+
+/* Reveal-on-scroll */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }

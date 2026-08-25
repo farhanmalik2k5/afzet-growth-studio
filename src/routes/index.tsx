@@ -1,24 +1,74 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { TrustStrip, MetricsSection, ServicesIntro } from "@/components/site/Sections";
+import { ServiceSection } from "@/components/site/ServiceSection";
+import { services } from "@/components/site/services";
+import { WhyAfzet } from "@/components/site/WhyAfzet";
+import { CaseStudy } from "@/components/site/CaseStudy";
+import { FinalCTA } from "@/components/site/FinalCTA";
+import { Footer } from "@/components/site/Footer";
+
+const title = "Afzet Studio | Digital Growth Systems for Healthcare";
+const description =
+  "Afzet Studio builds websites, acquisition systems, AI automation, SEO, and patient growth infrastructure for modern healthcare businesses.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Afzet Studio",
+          description,
+          email: "hello@afzet.studio",
+          areaServed: "Healthcare",
+          knowsAbout: [
+            "Patient acquisition",
+            "Healthcare website design",
+            "SEO",
+            "Workflow automation",
+            "Patient retention",
+          ],
+        }),
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <TrustStrip />
+        <MetricsSection />
+        <ServicesIntro />
+        {services.map((service, i) => (
+          <ServiceSection key={service.id} service={service} flip={i % 2 === 1} />
+        ))}
+        <WhyAfzet />
+        <CaseStudy />
+        <FinalCTA />
+      </main>
+      <Footer />
+    </>
   );
 }
