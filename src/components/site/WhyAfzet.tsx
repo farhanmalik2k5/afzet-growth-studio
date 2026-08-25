@@ -5,17 +5,17 @@ import collage4 from "@/assets/collage-4.jpg";
 import { Button, Container, Eyebrow, Reveal } from "./ui";
 
 const tiles = [
-  { src: collage2, alt: "Dentist smiling in a modern practice", cls: "top-4 left-0 w-28 sm:w-36" },
+  { src: collage2, alt: "Dentist smiling in a modern practice", cls: "top-2 left-0 w-32 xl:w-40" },
   {
     src: collage1,
     alt: "Handshake between a clinician and a patient",
-    cls: "top-40 left-10 w-24 sm:w-32",
+    cls: "bottom-6 left-16 w-28 xl:w-32",
   },
-  { src: collage3, alt: "Calm clinic reception interior", cls: "top-8 right-0 w-28 sm:w-36" },
+  { src: collage3, alt: "Calm clinic reception interior", cls: "top-10 right-0 w-32 xl:w-40" },
   {
     src: collage4,
     alt: "Healthcare practitioner in a bright treatment room",
-    cls: "bottom-4 right-8 w-24 sm:w-32",
+    cls: "bottom-2 right-20 w-28 xl:w-32",
   },
 ];
 
@@ -24,7 +24,7 @@ export function WhyAfzet() {
     <section id="about" className="grad-surface grain relative overflow-hidden py-24 lg:py-36">
       <div className="grad-layer grad-dark" aria-hidden="true" />
       <Container className="relative">
-        <div className="relative mx-auto max-w-2xl text-center">
+        <div className="relative">
           {tiles.map((t) => (
             <img
               key={t.alt}
@@ -38,6 +38,9 @@ export function WhyAfzet() {
               style={{ aspectRatio: "1 / 1" }}
             />
           ))}
+
+          <div className="mx-auto max-w-2xl text-center">
+
 
           <Reveal>
             <Eyebrow className="text-background/60">Why Afzet</Eyebrow>
