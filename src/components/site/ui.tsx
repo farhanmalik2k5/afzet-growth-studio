@@ -95,14 +95,15 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
+  const Component = Tag as "div";
+
   return (
-    // @ts-expect-error -- dynamic tag with a shared ref type
-    <Tag
-      ref={ref}
+    <Component
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={cn("reveal", shown && "reveal-in", className)}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
-    </Tag>
+    </Component>
   );
 }
