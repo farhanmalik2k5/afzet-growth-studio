@@ -54,7 +54,10 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <>
+    <div className="relative min-h-screen">
+      {/* Full-page gradient backdrop — absolute so it spans the entire document height
+          and reveals different colour zones as the user scrolls */}
+      <div id="gradient-backdrop" aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" />
       <Navbar />
       <main>
         <Hero />
@@ -69,6 +72,6 @@ function Home() {
         <FinalCTA />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

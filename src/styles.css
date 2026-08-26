@@ -53,14 +53,32 @@
   --radius: 0.75rem;
 
   --ink: oklch(0.19 0.014 155);
-  --ink-soft: oklch(0.33 0.012 155);
+  --ink-soft: oklch(0.38 0.012 155);
   --cream: oklch(0.975 0.008 95);
-  --mint: oklch(0.94 0.045 165);
+  --mint: oklch(0.92 0.06 165);
   --lime: oklch(0.88 0.14 128);
-  --cyan: oklch(0.93 0.05 205);
-  --lavender: oklch(0.91 0.05 295);
-  --coral: oklch(0.9 0.055 25);
-  --peach: oklch(0.93 0.055 60);
+  --cyan: oklch(0.91 0.06 205);
+  --lavender: oklch(0.90 0.065 295);
+  --coral: oklch(0.88 0.07 25);
+  --peach: oklch(0.91 0.065 55);
+
+  /*
+   * Section background palette — rise4-inspired bold pastels.
+   * Each section gets one of these as its solid background fill.
+   * Values are vivid enough to be clearly perceived as colored.
+   */
+  /* Sage green  — metrics / first light section */
+  --bg-green:   oklch(0.855 0.095 148);
+  /* Ice blue    — website/conversion section */
+  --bg-blue:    oklch(0.855 0.085 220);
+  /* Soft lilac  — SEO/visibility section */
+  --bg-lilac:   oklch(0.855 0.075 305);
+  /* Rose pink   — automation/AI section */
+  --bg-pink:    oklch(0.820 0.095 8);
+  /* Warm salmon — retention section */
+  --bg-salmon:  oklch(0.825 0.075 25);
+  /* Off-white   — intro/cream bridge sections */
+  --bg-cream:   oklch(0.965 0.018 90);
 
   --background: oklch(0.985 0.004 100);
   --foreground: var(--ink);
@@ -78,8 +96,8 @@
   --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.008 130);
-  --input: oklch(0.9 0.008 130);
+  --border: oklch(0.92 0.008 130);
+  --input: oklch(0.92 0.008 130);
   --ring: oklch(0.75 0.06 145);
 }
 
@@ -110,15 +128,18 @@
 
   html {
     scroll-behavior: smooth;
+    height: 100%;
   }
 
   body {
-    background-color: var(--color-background);
+    /* Transparent — the #gradient-backdrop shows through */
+    background: transparent;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    min-height: 100%;
   }
 
   h1,
@@ -130,81 +151,143 @@
   }
 }
 
+/*
+ * Full-page gradient backdrop.
+ * position: absolute; inset: 0 — stretches to fill its relative parent,
+ * which is the full-height page wrapper div.
+ * background-size: 100% 100% maps the gradient across the entire page height,
+ * so different colour zones are revealed as the user scrolls.
+ *
+ * Colour flow (top → bottom, matching rise4.com):
+ *  dark forest ink → sage green → cream bridge → sage green
+ *  → sky blue → soft lilac → rose pink → warm salmon → dark ink
+ */
+#gradient-backdrop {
+  background:
+    /* Organic blobs add softness and lateral variation */
+    radial-gradient(ellipse 80% 40% at 15%  15%, oklch(0.87 0.09 148 / 0.55), transparent 70%),
+    radial-gradient(ellipse 70% 35% at 85%  30%, oklch(0.85 0.08 220 / 0.50), transparent 70%),
+    radial-gradient(ellipse 75% 35% at 20%  50%, oklch(0.83 0.09 220 / 0.50), transparent 70%),
+    radial-gradient(ellipse 65% 30% at 82%  60%, oklch(0.82 0.08 305 / 0.45), transparent 70%),
+    radial-gradient(ellipse 75% 35% at 12%  73%, oklch(0.80 0.10   8 / 0.50), transparent 70%),
+    radial-gradient(ellipse 70% 30% at 83%  86%, oklch(0.81 0.08  25 / 0.45), transparent 70%),
+    /* Base linear colour river */
+    linear-gradient(
+      180deg,
+      oklch(0.19 0.016 155)   0%,
+      oklch(0.19 0.016 155)   5%,
+      oklch(0.68 0.11  148)  14%,
+      oklch(0.85 0.10  148)  22%,
+      oklch(0.93 0.025  90)  30%,
+      oklch(0.85 0.10  148)  36%,
+      oklch(0.83 0.10  220)  46%,
+      oklch(0.81 0.09  305)  56%,
+      oklch(0.79 0.11    8)  66%,
+      oklch(0.80 0.09   25)  76%,
+      oklch(0.48 0.06  148)  88%,
+      oklch(0.19 0.016 155) 100%
+    );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+
+
+
 /* ---------------------------------------------------------------
-   Atmospheric gradient environments.
-   Each surface = base linear gradient + oversized blurred radial
-   layers that bleed past the section edges so neighbouring sections
-   interpolate instead of banding.
+   Gradient surface system — rise4-inspired continuous colour river.
+
+   Strategy:
+   • The <body> is one tall continuous gradient — the colour river.
+   • All sections are background: transparent so the river flows through.
+   • grad-* utilities apply only a subtle local radial blob for depth;
+     they do NOT set a solid fill colour.
+   • grad-dark is the only sealed exception (opaque ink island).
    ---------------------------------------------------------------- */
 
 @utility grad-surface {
   position: relative;
   isolation: isolate;
-  background-color: var(--background);
+  /* Transparent — the body gradient shows through */
+  background: transparent;
 }
 
+/* Subtle local depth blob — positioned absolutely inside the section */
 @utility grad-layer {
   position: absolute;
   inset: -25% -10%;
   z-index: -1;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(70px);
+  opacity: 0.35;
 }
 
+/* Local shimmer: sage-green warmth */
 @utility grad-green {
   background:
-    radial-gradient(60% 55% at 12% 20%, color-mix(in oklab, var(--lime) 70%, transparent), transparent 70%),
-    radial-gradient(55% 60% at 85% 15%, color-mix(in oklab, var(--mint) 85%, transparent), transparent 72%),
-    radial-gradient(70% 60% at 70% 95%, color-mix(in oklab, var(--cream) 90%, transparent), transparent 75%),
-    linear-gradient(180deg, color-mix(in oklab, var(--mint) 30%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 70% at 20% 40%,
+      oklch(0.90 0.12 145 / 0.6), transparent 70%),
+    radial-gradient(ellipse 55% 55% at 80% 70%,
+      oklch(0.80 0.10 158 / 0.45), transparent 70%);
 }
 
+/* Local shimmer: cool sky-blue */
 @utility grad-cyan {
   background:
-    radial-gradient(55% 60% at 85% 18%, color-mix(in oklab, var(--cyan) 85%, transparent), transparent 72%),
-    radial-gradient(60% 55% at 8% 70%, color-mix(in oklab, var(--mint) 70%, transparent), transparent 72%),
-    radial-gradient(65% 55% at 55% 100%, color-mix(in oklab, var(--lavender) 45%, transparent), transparent 75%),
-    linear-gradient(180deg, color-mix(in oklab, var(--cyan) 25%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 70% at 75% 35%,
+      oklch(0.87 0.09 218 / 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 55% at 15% 70%,
+      oklch(0.80 0.10 228 / 0.4), transparent 70%);
 }
 
+/* Local shimmer: soft lilac cloud */
 @utility grad-purple {
   background:
-    radial-gradient(55% 60% at 15% 20%, color-mix(in oklab, var(--lavender) 85%, transparent), transparent 72%),
-    radial-gradient(60% 55% at 90% 60%, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 72%),
-    radial-gradient(60% 55% at 45% 100%, color-mix(in oklab, var(--coral) 40%, transparent), transparent 75%),
-    linear-gradient(180deg, color-mix(in oklab, var(--lavender) 30%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 70% at 20% 35%,
+      oklch(0.87 0.08 305 / 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 55% at 80% 65%,
+      oklch(0.80 0.09 318 / 0.4), transparent 70%);
 }
 
+/* Local shimmer: rose-pink blush */
 @utility grad-coral {
   background:
-    radial-gradient(58% 60% at 82% 15%, color-mix(in oklab, var(--coral) 85%, transparent), transparent 72%),
-    radial-gradient(60% 55% at 5% 55%, color-mix(in oklab, var(--lavender) 55%, transparent), transparent 72%),
-    radial-gradient(65% 55% at 60% 100%, color-mix(in oklab, var(--peach) 65%, transparent), transparent 75%),
-    linear-gradient(180deg, color-mix(in oklab, var(--coral) 25%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 65% at 75% 30%,
+      oklch(0.84 0.10 358 / 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 15% 70%,
+      oklch(0.76 0.11 12 / 0.4), transparent 70%);
 }
 
+/* Local shimmer: warm peach-salmon */
 @utility grad-peach {
   background:
-    radial-gradient(55% 60% at 18% 18%, color-mix(in oklab, var(--peach) 90%, transparent), transparent 72%),
-    radial-gradient(60% 60% at 92% 70%, color-mix(in oklab, var(--coral) 45%, transparent), transparent 72%),
-    radial-gradient(70% 55% at 50% 100%, color-mix(in oklab, var(--cream) 95%, transparent), transparent 75%),
-    linear-gradient(180deg, color-mix(in oklab, var(--peach) 28%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 65% at 20% 30%,
+      oklch(0.85 0.09 30 / 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 80% 70%,
+      oklch(0.78 0.09 18 / 0.4), transparent 70%);
 }
 
+/* Local shimmer: cream warmth */
 @utility grad-cream {
   background:
-    radial-gradient(60% 60% at 80% 20%, color-mix(in oklab, var(--cream) 100%, transparent), transparent 72%),
-    radial-gradient(55% 55% at 10% 60%, color-mix(in oklab, var(--peach) 55%, transparent), transparent 72%),
-    radial-gradient(65% 60% at 55% 100%, color-mix(in oklab, var(--mint) 45%, transparent), transparent 78%),
-    linear-gradient(180deg, color-mix(in oklab, var(--cream) 70%, var(--background)), var(--background));
+    radial-gradient(ellipse 65% 65% at 75% 25%,
+      oklch(0.97 0.025 90 / 0.7), transparent 70%),
+    radial-gradient(ellipse 55% 55% at 15% 70%,
+      oklch(0.94 0.03 80 / 0.5), transparent 70%);
 }
 
+/* ── Dark island — hero / CTA / WhyAfzet ────────────────────────
+   Fully opaque — the only section that seals the body gradient.  */
 @utility grad-dark {
   background:
-    radial-gradient(55% 60% at 20% 10%, color-mix(in oklab, var(--lime) 30%, transparent), transparent 68%),
-    radial-gradient(60% 60% at 90% 85%, color-mix(in oklab, var(--mint) 22%, transparent), transparent 70%),
-    radial-gradient(80% 70% at 50% 50%, color-mix(in oklab, var(--ink) 92%, transparent), transparent 78%),
-    linear-gradient(180deg, var(--ink), color-mix(in oklab, var(--ink) 88%, var(--lime)));
+    radial-gradient(ellipse 55% 55% at 18% 12%,
+      color-mix(in oklab, var(--lime) 28%, transparent),
+      transparent 65%),
+    radial-gradient(ellipse 60% 55% at 88% 88%,
+      color-mix(in oklab, var(--mint) 20%, transparent),
+      transparent 65%),
+    linear-gradient(160deg, oklch(0.17 0.016 155), oklch(0.22 0.020 148));
+  isolation: isolate;
 }
 
 @utility grain {
@@ -245,3 +328,4 @@
     transition-duration: 0.001ms !important;
   }
 }
+

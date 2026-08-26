@@ -21,8 +21,17 @@ const tiles = [
 
 export function WhyAfzet() {
   return (
-    <section id="about" className="grad-surface grain relative overflow-hidden py-24 lg:py-36">
-      <div className="grad-layer grad-dark" aria-hidden="true" />
+    <section id="about" className="grad-dark grain relative overflow-hidden py-24 lg:py-36">
+      <div
+        className="pointer-events-none absolute inset-[-30%_-12%] z-[-1]"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(60% 55% at 20% 15%, oklch(0.88 0.14 128 / 0.20), transparent 65%), " +
+            "radial-gradient(55% 50% at 82% 82%, oklch(0.92 0.06 165 / 0.15), transparent 65%)",
+          filter: "blur(80px)",
+        }}
+      />
       <Container className="relative">
         <div className="relative">
           {tiles.map((t) => (

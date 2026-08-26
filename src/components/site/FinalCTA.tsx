@@ -2,8 +2,17 @@ import { Container, Reveal } from "./ui";
 
 export function FinalCTA() {
   return (
-    <section id="contact" className="grad-surface grain relative overflow-hidden py-28 lg:py-40">
-      <div className="grad-layer grad-dark" aria-hidden="true" />
+    <section id="contact" className="grad-dark grain relative overflow-hidden py-28 lg:py-40">
+      <div
+        className="pointer-events-none absolute inset-[-30%_-12%] z-[-1]"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(55% 55% at 18% 20%, oklch(0.88 0.14 128 / 0.22), transparent 65%), " +
+            "radial-gradient(50% 50% at 85% 78%, oklch(0.92 0.06 165 / 0.16), transparent 65%)",
+          filter: "blur(80px)",
+        }}
+      />
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="font-[family-name:var(--font-display)] text-background [font-size:clamp(2.2rem,5vw,3.8rem)]">

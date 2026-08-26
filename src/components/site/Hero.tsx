@@ -3,8 +3,18 @@ import { Button, Container } from "./ui";
 
 export function Hero() {
   return (
-    <section id="top" className="grad-surface grain relative overflow-hidden">
-      <div className="grad-layer grad-dark" aria-hidden="true" />
+    <section id="top" className="grad-dark grain relative overflow-hidden">
+      {/* Subtle glow blobs on top of the sealed dark surface */}
+      <div
+        className="pointer-events-none absolute inset-[-30%_-12%] z-[-1]"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(55% 50% at 15% 18%, oklch(0.88 0.14 128 / 0.22), transparent 65%), " +
+            "radial-gradient(50% 50% at 85% 80%, oklch(0.92 0.06 165 / 0.16), transparent 65%)",
+          filter: "blur(80px)",
+        }}
+      />
 
       <Container className="relative pb-24 pt-36 sm:pt-40 lg:pb-32 lg:pt-44">
         <div className="grid items-end gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
