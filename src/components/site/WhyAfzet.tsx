@@ -2,88 +2,118 @@ import collage1 from "@/assets/collage-1.jpg";
 import collage2 from "@/assets/collage-2.jpg";
 import collage3 from "@/assets/collage-3.jpg";
 import collage4 from "@/assets/collage-4.jpg";
-import { Button, Container, Eyebrow, Reveal } from "./ui";
+import serviceAcquisition from "@/assets/service-acquisition.jpg";
+import serviceWebsite from "@/assets/service-website.jpg";
+import serviceSeo from "@/assets/service-seo.jpg";
+import serviceAutomation from "@/assets/service-automation.jpg";
+import serviceRetention from "@/assets/service-retention.jpg";
+import serviceAnalytics from "@/assets/service-analytics.jpg";
+import { Container, Reveal } from "./ui";
 
-const tiles = [
-  { src: collage2, alt: "Dentist smiling in a modern practice", cls: "top-2 left-0 w-32 xl:w-40" },
-  {
-    src: collage1,
-    alt: "Handshake between a clinician and a patient",
-    cls: "bottom-6 left-16 w-28 xl:w-32",
-  },
-  { src: collage3, alt: "Calm clinic reception interior", cls: "top-10 right-0 w-32 xl:w-40" },
-  {
-    src: collage4,
-    alt: "Healthcare practitioner in a bright treatment room",
-    cls: "bottom-2 right-20 w-28 xl:w-32",
-  },
+const floatingCards = [
+  // Top Left Outer
+  { src: collage1, alt: "Clinician consulting patient", cls: "top-[9%] left-[2%] w-[130px] h-[98px]" },
+  // Top Left Inner
+  { src: collage2, alt: "Team members celebrating at desk", cls: "top-[18%] left-[20%] w-[145px] h-[108px]" },
+  // Mid Left Outer
+  { src: serviceAcquisition, alt: "Smiling patient in waiting area", cls: "top-[40%] left-[8.5%] w-[138px] h-[102px]" },
+  // Bottom Left Far Edge
+  { src: serviceWebsite, alt: "Clinician outdoors smiling", cls: "bottom-[21%] left-[0.5%] w-[132px] h-[98px]" },
+  // Bottom Left Inner
+  { src: collage3, alt: "Two women discussing treatment", cls: "bottom-[11%] left-[16%] w-[145px] h-[106px]" },
+
+  // Top Right Far Edge
+  { src: serviceAnalytics, alt: "Doctor gesturing during consultation", cls: "top-[9%] right-[2%] w-[138px] h-[106px]" },
+  // Top Right Inner
+  { src: serviceSeo, alt: "Two specialists reviewing results on laptop", cls: "top-[18%] right-[20%] w-[145px] h-[108px]" },
+  // Mid Right Inner
+  { src: serviceAutomation, alt: "Healthcare specialists collaborating", cls: "top-[46%] right-[8.5%] w-[138px] h-[102px]" },
+  // Bottom Right Inner
+  { src: collage4, alt: "Patient smiling warmly", cls: "bottom-[10%] right-[15%] w-[142px] h-[106px]" },
+  // Bottom Right Far Edge
+  { src: serviceRetention, alt: "Clinician with clipboard consulting patient", cls: "bottom-[21%] right-[0.5%] w-[132px] h-[98px]" },
 ];
 
 export function WhyAfzet() {
   return (
-    <section id="about" className="grad-dark grain relative overflow-hidden py-24 lg:py-36">
-      <div
-        className="pointer-events-none absolute inset-[-30%_-12%] z-[-1]"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(60% 55% at 20% 15%, oklch(0.88 0.14 128 / 0.20), transparent 65%), " +
-            "radial-gradient(55% 50% at 82% 82%, oklch(0.92 0.06 165 / 0.15), transparent 65%)",
-          filter: "blur(80px)",
-        }}
-      />
-      <Container className="relative">
-        <div className="relative">
-          {tiles.map((t) => (
+    <section 
+      id="about" 
+      className="relative overflow-hidden bg-gradient-to-b from-[#10271c] via-[#143627] to-[#1eb357] py-28 lg:py-40 text-white min-h-[760px] flex flex-col justify-center"
+    >
+      {/* Radiant bottom green aura light */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        <div
+          className="absolute rounded-full opacity-60"
+          style={{
+            width: "min(1000px, 130vw)",
+            height: "min(600px, 90vw)",
+            bottom: "-10%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "radial-gradient(ellipse at 50% 100%, rgba(132,240,130,0.55) 0%, rgba(30,179,87,0.3) 50%, transparent 80%)",
+            filter: "blur(60px)",
+          }}
+        />
+      </div>
+
+      {/* Floating Squircle Photo Cards matching reference screenshot */}
+      <div className="pointer-events-none absolute inset-0 z-10 hidden xl:block select-none overflow-hidden" aria-hidden="true">
+        {floatingCards.map((card, idx) => (
+          <div
+            key={idx}
+            className={`absolute rounded-[20px] overflow-hidden border border-white/20 shadow-xl transition-transform duration-700 hover:scale-105 ${card.cls}`}
+          >
             <img
-              key={t.alt}
-              src={t.src}
-              alt={t.alt}
-              width={700}
-              height={700}
-              loading="lazy"
-              decoding="async"
-              className={`pointer-events-none absolute hidden rounded-2xl object-cover opacity-90 shadow-[0_30px_70px_-40px_rgba(0,0,0,0.8)] lg:block ${t.cls}`}
-              style={{ aspectRatio: "1 / 1" }}
+              src={card.src}
+              alt={card.alt}
+              className="h-full w-full object-cover"
             />
-          ))}
-
-          <div className="mx-auto max-w-2xl text-center">
-            <Reveal>
-              <Eyebrow className="text-background/60">Why Afzet</Eyebrow>
-              <h2 className="mt-5 font-[family-name:var(--font-display)] text-background [font-size:clamp(2rem,4.4vw,3.3rem)]">
-                Partners in growth. Built for healthcare.
-              </h2>
-              <p className="mx-auto mt-6 max-w-lg text-[1rem] leading-relaxed text-background/70">
-                Healthcare businesses don't need another disconnected marketing vendor. They need a
-                digital partner who understands the patient journey, the business behind the
-                practice, and the systems connecting the two.
-              </p>
-              <div className="mt-9 flex justify-center">
-                <Button href="#contact" variant="light">
-                  Book a Strategy Call
-                </Button>
-              </div>
-            </Reveal>
           </div>
+        ))}
+      </div>
+
+      <Container className="relative z-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <Reveal>
+            {/* Pill Badge matching reference */}
+            <div className="inline-block rounded-md bg-[#7bf179] px-3.5 py-1 text-[0.75rem] font-semibold text-[#082015] shadow-sm">
+              Why Afzet Studio
+            </div>
+
+            {/* Headline matching reference (medium weight, smaller font size) */}
+            <h2 className="mt-4 font-[family-name:var(--font-display)] text-white text-[1.9rem] sm:text-[2.4rem] lg:text-[2.9rem] font-medium leading-[1.12] tracking-[-0.02em]">
+              Partners in{" "}
+              <span className="font-[family-name:var(--font-serif)] font-normal italic text-[#7bf179]">
+                growth.
+              </span>
+              <br />
+              Experts in{" "}
+              <span className="font-[family-name:var(--font-serif)] font-normal italic text-[#7bf179]">
+                care.
+              </span>
+            </h2>
+
+            {/* Body Copy matching reference typography & width */}
+            <div className="mx-auto mt-6 max-w-[560px] space-y-4 text-[0.88rem] sm:text-[0.95rem] leading-[1.65] text-white/85 font-normal">
+              <p>
+                As clinic operators ourselves, we go beyond the expertise of a traditional marketing agency; we've seen first hand what patients and clinics need to succeed. We built Afzet Studio to help other clinics achieve our collective mission — to create a world where patients have better access to the life-changing healthcare that they need.
+              </p>
+              <p>
+                By combining our clinical experience, marketing know-how, and deep passion for healthcare, we've built the industry's smartest, HIPAA-compliant system to deliver long-term success for clinics.
+              </p>
+            </div>
+
+            {/* Our Approach Button matching reference */}
+            <div className="mt-8 flex justify-center">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full border border-[#52be7f]/60 bg-[#236843]/80 px-7 py-3 text-sm font-semibold text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:bg-[#2a7b50] hover:scale-105"
+              >
+                Our Approach
+              </a>
+            </div>
+          </Reveal>
         </div>
-
-
-        <ul className="mt-16 grid grid-cols-2 gap-6 lg:hidden">
-          {tiles.map((t) => (
-            <li key={`m-${t.alt}`}>
-              <img
-                src={t.src}
-                alt={t.alt}
-                width={700}
-                height={700}
-                loading="lazy"
-                decoding="async"
-                className="aspect-square w-full rounded-2xl object-cover"
-              />
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );
