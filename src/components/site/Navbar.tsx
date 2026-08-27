@@ -68,13 +68,24 @@ export function Navbar() {
             <a
               href="#contact"
               className={cn(
-                "hidden rounded-full px-4 py-2 text-[0.8rem] font-medium transition-colors duration-300 md:inline-flex",
+                "hidden rounded-full border px-4 py-2 text-[0.8rem] font-medium transition-colors duration-300 md:inline-flex",
                 onDark
-                  ? "bg-background/95 text-foreground hover:bg-background"
+                  ? "border-white/20 bg-white/5 text-white hover:bg-white/10"
+                  : "border-foreground/20 bg-transparent text-foreground hover:bg-foreground/5",
+              )}
+            >
+              Log in
+            </a>
+            <a
+              href="#contact"
+              className={cn(
+                "hidden rounded-full px-5 py-2 text-[0.82rem] font-semibold transition-colors duration-300 md:inline-flex",
+                onDark
+                  ? "bg-white text-black shadow-md hover:bg-white/90"
                   : "bg-foreground text-background hover:bg-foreground/85",
               )}
             >
-              Book a Strategy Call
+              Book a Demo
             </a>
             <button
               type="button"
