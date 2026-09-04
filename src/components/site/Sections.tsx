@@ -67,7 +67,7 @@ function JnjLogo() {
 
 export function TrustStrip() {
   return (
-    <section className="bg-white py-10 border-b border-slate-100" aria-label="Preferred Growth Partners">
+    <section className="relative z-10 bg-white/40 backdrop-blur-md py-10 border-b border-slate-200/40" aria-label="Preferred Growth Partners">
       <Container>
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           <p className="max-w-[180px] text-[0.8rem] font-medium leading-snug text-slate-500">
@@ -89,7 +89,8 @@ export function TrustStrip() {
 
 export function MetricsSection() {
   return (
-    <section id="approach" className="relative overflow-hidden bg-[#f4faf5] py-24 lg:py-36">
+    <section id="approach" className="grad-surface relative overflow-x-clip py-24 lg:py-36">
+      <div className="grad-layer grad-green" aria-hidden="true" />
       {/* Background Geometric Helix/Star Pattern on Left */}
       <div 
         className="pointer-events-none absolute top-0 bottom-0 left-0 w-1/2 opacity-30 select-none" 
@@ -142,7 +143,7 @@ export function MetricsSection() {
 
 export function ServicesIntro() {
   return (
-    <section id="services" className="grad-surface relative overflow-hidden py-24 lg:py-32">
+    <section id="services" className="grad-surface relative overflow-x-clip py-24 lg:py-32">
       <div className="grad-layer grad-cream" aria-hidden="true" />
       <Container>
         <Reveal className="max-w-3xl">

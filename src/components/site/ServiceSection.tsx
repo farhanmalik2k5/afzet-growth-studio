@@ -82,7 +82,7 @@ export function ServiceSection({ service, flip }: { service: Service; flip: bool
     <section
       id={service.id}
       aria-labelledby={`${service.id}-title`}
-      className="grad-surface relative overflow-hidden py-20 lg:py-28"
+      className="grad-surface relative overflow-x-clip py-20 lg:py-28"
     >
       <div className={cn("grad-layer", service.gradient)} aria-hidden="true" />
       <Container>

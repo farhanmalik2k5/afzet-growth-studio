@@ -14,7 +14,8 @@ export function CaseStudy() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="work" className="relative overflow-hidden bg-[#f7f6f2] py-24 lg:py-36">
+    <section id="work" className="grad-surface relative overflow-x-clip py-24 lg:py-36">
+      <div className="grad-layer grad-cream" aria-hidden="true" />
       <Container>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <Reveal className="max-w-2xl">

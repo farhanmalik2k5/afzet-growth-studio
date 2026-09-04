@@ -192,12 +192,12 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* ── White mist fade ── */}
+      {/* ── Smooth bottom transition gradient ── */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-24 sm:h-32"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-28 sm:h-36"
         style={{
           background:
-            "linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.80) 30%, rgba(255,255,255,0.25) 70%, transparent 100%)",
+            "linear-gradient(to bottom in oklab, transparent 0%, oklch(0.19 0.016 155 / 0.4) 40%, oklch(0.985 0.004 100 / 0.75) 100%)",
         }}
         aria-hidden="true"
       />

@@ -165,27 +165,27 @@
  */
 #gradient-backdrop {
   background:
-    /* Organic blobs add softness and lateral variation */
-    radial-gradient(ellipse 80% 40% at 15%  15%, oklch(0.87 0.09 148 / 0.55), transparent 70%),
-    radial-gradient(ellipse 70% 35% at 85%  30%, oklch(0.85 0.08 220 / 0.50), transparent 70%),
-    radial-gradient(ellipse 75% 35% at 20%  50%, oklch(0.83 0.09 220 / 0.50), transparent 70%),
-    radial-gradient(ellipse 65% 30% at 82%  60%, oklch(0.82 0.08 305 / 0.45), transparent 70%),
-    radial-gradient(ellipse 75% 35% at 12%  73%, oklch(0.80 0.10   8 / 0.50), transparent 70%),
-    radial-gradient(ellipse 70% 30% at 83%  86%, oklch(0.81 0.08  25 / 0.45), transparent 70%),
-    /* Base linear colour river */
+    /* Organic blurs for depth and soft color dispersion */
+    radial-gradient(ellipse 90% 40% at 15% 12% in oklab, oklch(0.88 0.08 148 / 0.55), transparent 75%),
+    radial-gradient(ellipse 80% 35% at 85% 28% in oklab, oklch(0.86 0.07 220 / 0.50), transparent 75%),
+    radial-gradient(ellipse 85% 35% at 18% 45% in oklab, oklch(0.85 0.08 220 / 0.50), transparent 75%),
+    radial-gradient(ellipse 75% 30% at 82% 58% in oklab, oklch(0.83 0.07 305 / 0.45), transparent 75%),
+    radial-gradient(ellipse 85% 35% at 15% 72% in oklab, oklch(0.82 0.09   8 / 0.50), transparent 75%),
+    radial-gradient(ellipse 80% 30% at 85% 85% in oklab, oklch(0.83 0.07  25 / 0.45), transparent 75%),
+    /* Ultra-smooth continuous linear color river with OKLAB perceptual interpolation */
     linear-gradient(
-      180deg,
-      oklch(0.19 0.016 155)   0%,
-      oklch(0.19 0.016 155)   5%,
-      oklch(0.68 0.11  148)  14%,
-      oklch(0.85 0.10  148)  22%,
-      oklch(0.93 0.025  90)  30%,
-      oklch(0.85 0.10  148)  36%,
-      oklch(0.83 0.10  220)  46%,
-      oklch(0.81 0.09  305)  56%,
-      oklch(0.79 0.11    8)  66%,
-      oklch(0.80 0.09   25)  76%,
-      oklch(0.48 0.06  148)  88%,
+      180deg in oklab,
+      oklch(0.19 0.016 155)  0%,
+      oklch(0.35 0.04  150)  5%,
+      oklch(0.72 0.09  148) 14%,
+      oklch(0.88 0.08  148) 22%,
+      oklch(0.94 0.025  90) 30%,
+      oklch(0.88 0.08  148) 38%,
+      oklch(0.86 0.08  220) 48%,
+      oklch(0.84 0.07  305) 58%,
+      oklch(0.82 0.09    8) 68%,
+      oklch(0.83 0.08   25) 78%,
+      oklch(0.55 0.05  148) 88%,
       oklch(0.19 0.016 155) 100%
     );
   background-size: 100% 100%;
@@ -213,14 +213,16 @@
   background: transparent;
 }
 
-/* Subtle local depth blob — positioned absolutely inside the section */
+/* Subtle local depth blob — mask-image ensures top/bottom fade smoothly to 0 with no cut lines */
 @utility grad-layer {
   position: absolute;
-  inset: -25% -10%;
+  inset: -15% -5%;
   z-index: -1;
   pointer-events: none;
-  filter: blur(70px);
+  filter: blur(80px);
   opacity: 0.35;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
 }
 
 /* Local shimmer: sage-green warmth */

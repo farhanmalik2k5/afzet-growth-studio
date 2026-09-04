@@ -38,8 +38,17 @@ export function WhyAfzet() {
   return (
     <section 
       id="about" 
-      className="relative overflow-hidden bg-gradient-to-b from-[#10271c] via-[#143627] to-[#1eb357] py-28 lg:py-40 text-white min-h-[760px] flex flex-col justify-center"
+      className="relative overflow-x-clip bg-gradient-to-b from-[#10271c] via-[#143627] to-[#1a6e3e] py-28 lg:py-40 text-white min-h-[760px] flex flex-col justify-center"
     >
+      {/* Smooth top edge transition overlay */}
+      <div 
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 z-10"
+        style={{
+          background: "linear-gradient(to bottom in oklab, transparent 0%, rgba(16,39,28,0.7) 60%, rgba(16,39,28,1) 100%)"
+        }}
+        aria-hidden="true"
+      />
+
       {/* Radiant bottom green aura light */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div
@@ -50,7 +59,7 @@ export function WhyAfzet() {
             bottom: "-10%",
             left: "50%",
             transform: "translateX(-50%)",
-            background: "radial-gradient(ellipse at 50% 100%, rgba(132,240,130,0.55) 0%, rgba(30,179,87,0.3) 50%, transparent 80%)",
+            background: "radial-gradient(ellipse at 50% 100% in oklab, rgba(132,240,130,0.55) 0%, rgba(30,179,87,0.3) 50%, transparent 80%)",
             filter: "blur(60px)",
           }}
         />
